@@ -2,6 +2,10 @@
 const API_URL = 'https://weatherpro-backend.onrender.com';
 const UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutos
 
+fetch(`${API_BASE_URL}/api/test`)
+  .then(response => console.log('Conexão OK:', response))
+  .catch(error => console.error('Falha na conexão:', error));
+
 // Elementos DOM
 const elements = {
     cityInput: document.getElementById('city-input'),
@@ -123,7 +127,7 @@ async function loadWeatherData(city) {
     try {
         showLoading();
         
-        const response = await fetch(`${API_BASE_URL}/weather?city=${encodeURIComponent(city)}`);
+        const response = await fetch(`${API_BASE_URL}/api/weather?city=${encodeURIComponent(city)}`);
         
         if (!response.ok) {
             const error = await response.json();

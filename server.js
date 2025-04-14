@@ -6,14 +6,23 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Configuração
-app.use(cors({
-    origin: [
-      'https://weatherpro-frontend.onrender.com', // Seu frontend
-      'http://localhost:5500' // Para desenvolvimento
-    ],
+// Configuração CORS ESSENCIAL (atualize com sua URL exata do frontend)
+const allowedOrigins = [
+    'https://weatherpro-frontend.onrender.com',
+    'http://localhost:5500' // Para desenvolvimento
+  ];
+  
+  app.use(cors({
+    origin: function(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type']
-}));
+    credentials: true
+  }));
 app.use(express.json());
 
 // Variáveis de ambiente
