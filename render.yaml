@@ -2,15 +2,12 @@ services:
   - type: web
     name: weatherpro-backend
     runtime: node
+    rootDirectory: backend/
     buildCommand: npm install
-    startCommand: node server.js
+    startCommand: npm start
     envVars:
       - key: PORT
         value: 10000
-      - key: DATABASE_URL
-        fromDatabase:
-          name: weatherpro-db
-          property: connectionString
 
   - type: static_site
     name: weatherpro-frontend
