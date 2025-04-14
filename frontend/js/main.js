@@ -1,5 +1,5 @@
 // Configurações
-const API_URL = 'https://weatherpro-backend.onrender.com';
+const API_BASE_URL = 'https://weatherpro-backend.onrender.com';
 const UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutos
 
 fetch(`${API_BASE_URL}/api/test`)
@@ -127,18 +127,26 @@ async function loadWeatherData(city) {
     try {
         showLoading();
         
+        // Adicione logs para debug:
+        console.log('Fetching:', `${API_BASE_URL}/api/weather?city=${encodeURIComponent(city)}`);
+        
         const response = await fetch(`${API_BASE_URL}/api/weather?city=${encodeURIComponent(city)}`);
+        
+        console.log('Response status:', response.status); // Log do status
         
         if (!response.ok) {
             const error = await response.json();
-            throw new Error(error.message || 'Erro ao buscar dados');
+            throw new Error(error.error || 'Erro ao buscar dados');
         }
         
-        state.weatherData = await response.json();
+        const data = await response.json();
+        console.log('Data received:', data); // Log dos dados
+        
+        state.weatherData = data;
         updateUI();
         updateLastUpdated();
     } catch (error) {
-        console.error('Erro:', error);
+        console.error('Erro completo:', error);
         showError(error.message);
     }
 }

@@ -6,23 +6,25 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Configuração
-// Configuração CORS ESSENCIAL (atualize com sua URL exata do frontend)
-const allowedOrigins = [
-    'https://weatherpro-frontend.onrender.com',
-    'http://localhost:5500' // Para desenvolvimento
-  ];
-  
-  app.use(cors({
-    origin: function(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST'],
+app.use(cors({
+    origin: [
+        'https://weatherpro-frontend.onrender.com',
+        'http://localhost:5500'
+    ],
+    methods: ['GET', 'OPTIONS'], // Adicione OPTIONS
+    allowedHeaders: ['Content-Type'],
     credentials: true
-  }));
+}));
+
+// Adicione tratamento para requisições OPTIONS
+app.options('*', cors())
+
+// Rota de teste OBRIGATÓRIA (adicione isso)
+app.get('/api/test', (req, res) => {
+    res.json({ status: 'online', timestamp: new Date() });
+});
+
+
 app.use(express.json());
 
 // Variáveis de ambiente
@@ -40,6 +42,9 @@ app.get('/api/weather', async (req, res) => {
         if (!city) {
             return res.status(400).json({ error: "O parâmetro 'city' é obrigatório" });
         }
+        res.header('Access-Control-Allow-Origin', 'https://weatherpro-frontend.onrender.com');
+        res.header('Access-Control-Allow-Methods', 'GET');
+        res.json(weatherData);
 
         // Busca dados atuais
         const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&lang=pt_br&appid=${OPENWEATHER_API_KEY}`;
