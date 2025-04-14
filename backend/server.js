@@ -7,7 +7,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Configuração
-app.use(cors());
+app.use(cors({
+    origin: [
+      'https://weatherpro-frontend.onrender.com',
+      'http://localhost:3000' // Para desenvolvimento
+    ]
+  }));
 app.use(express.json());
 
 // Variáveis de ambiente

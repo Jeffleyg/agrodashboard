@@ -1,5 +1,5 @@
 // Configurações
-const API_BASE_URL = process.env.API_BASE_URL || 'https://dashboard.onrender.com';
+const API_URL = 'https://weatherpro-backend.onrender.com';
 const UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutos
 
 // Elementos DOM
