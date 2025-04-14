@@ -2,17 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
-app.use(express.static('public'));
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Configuração
-app.use(cors({
-    origin: [
-      'https://weatherpro-frontend.onrender.com',
-      'http://localhost:3000' // Para desenvolvimento
-    ]
-  }));
+app.use(cors());
 app.use(express.json());
 
 // Variáveis de ambiente
@@ -96,6 +90,15 @@ function processForecastData(forecastList) {
         day, ...data
     }));
 }
+process.on('unhandledRejection', (err) => {
+    console.error('Erro não tratado:', err);
+    process.exit(1);
+  });
+  
+  process.on('uncaughtException', (err) => {
+    console.error('Exceção não capturada:', err);
+    process.exit(1);
+  });
 
 // Inicia o servidor
 app.listen(PORT, () => {
