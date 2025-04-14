@@ -42,9 +42,7 @@ app.get('/api/weather', async (req, res) => {
         if (!city) {
             return res.status(400).json({ error: "O parâmetro 'city' é obrigatório" });
         }
-        res.header('Access-Control-Allow-Origin', 'https://weatherpro-frontend.onrender.com');
-        res.header('Access-Control-Allow-Methods', 'GET');
-        res.json(weatherData);
+        
 
         // Busca dados atuais
         const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&lang=pt_br&appid=${OPENWEATHER_API_KEY}`;
