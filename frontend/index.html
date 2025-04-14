@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WeatherPro | Dashboard Climático</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <!-- <img src="./assets/icons/logo.svg" alt="WeatherPro" class="logo icon-large"/> -->
+        <h1>WeatherPro</h1>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+            <li class="active">
+                <img src="./assets/icons/dashboard.svg" class="icon dashboard-icon" alt="Dashboard">
+                <span>Dashboard</span>
+              </li>
+
+              <li>
+                <img src="./assets/icons/history.svg" class="icon history-icon" alt="Histórico">
+                <span>Histórico</span>
+              </li>
+
+              <li>
+                <img src="./assets/icons/settings.svg" class="icon settings-icon" alt="Configurações">
+                <span>Configurações</span>
+              </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <img src="./assets/icons/user.svg" alt="Usuário" class="icon icon-large"/>
+          <span>Admin</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <header class="main-header">
+        <div class="search-container">
+          <input type="text" id="city-input" placeholder="Buscar localização..." value="São Paulo">
+          <button id="search-btn">
+            <img src="./assets/icons/search.svg" alt="Buscar" class="icon icon-medium"/>
+          </button>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn-icon" id="refresh-btn">
+            <img src="./assets/icons/refresh.svg" alt="Atualizar" class="icon-sm refresh-icon"/>
+          </button>
+          <div class="notification-icon">
+            <img src="./assets/icons/notification.svg" alt="Notificações" class="icon-sm"/>
+            <span class="badge">3</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="content-wrapper">
+        <!-- Current Weather -->
+        <section class="current-weather-section">
+          <div class="section-header">
+            <h2>Condições Atuais</h2>
+            <span id="current-date"></span>
+            <span id="update-time"
+          </div>
+          
+          <div class="weather-cards" id="current-weather">
+            <!-- Preenchido dinamicamente -->
+            <div class="loading-card">
+              <div class="loading-spinner"></div>
+              <p>Carregando dados climáticos...</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Charts Section -->
+        <section class="charts-section">
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Previsão 7 Dias</h3>
+              <div class="chart-tabs">
+                <button class="tab-btn active" data-chart="temperature">Temperatura</button>
+                <button class="tab-btn" data-chart="humidity">Umidade</button>
+                <button class="tab-btn" data-chart="wind">Vento</button>
+              </div>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="weather-chart"></canvas>
+            </div>
+          </div>
+          
+          <div class="additional-info">
+            <div class="info-card">
+              <h4>Índice UV</h4>
+              <div class="uv-index">5.2 <span>Moderado</span></div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 52%"></div>
+              </div>
+            </div>
+            
+            <div class="info-card">
+              <h4>Qualidade do Ar</h4>
+              <div class="air-quality">67 <span>Boa</span></div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 67%"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Hourly Forecast -->
+        <section class="hourly-section">
+          <h2>Previsão Horária</h2>
+          <div class="hourly-container" id="hourly-forecast">
+            <!-- Preenchido dinamicamente -->
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

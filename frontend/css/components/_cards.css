@@ -1,0 +1,90 @@
+/* Card base */
+.card {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-0.25rem);
+  }
+  
+  /* Variantes de cards */
+  .card-weather {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
+    color: white;
+  }
+  
+  .card-metric {
+    border-left: 4px solid var(--primary-color);
+  }
+  
+  .card-chart {
+    padding: 1rem;
+  }
+  
+  /* Elementos do card */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-dark);
+  }
+  
+  .card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+  }
+  
+  .card-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-light);
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--border-radius-md);
+  }
+
+  .weather-icon {
+    width: 24px;  /* Tamanho padrão */
+    height: 24px;
+    object-fit: contain; /* Mantém a proporção */
+}
+
+/* Ajustes específicos para diferentes áreas */
+.sidebar-nav img {
+    width: 20px;
+    height: 20px;
+}
+
+.header-actions img {
+    width: 18px;
+    height: 18px;
+}
+
+.card img {
+    width: 28px;
+    height: 28px;
+}
+
+  @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+  }
