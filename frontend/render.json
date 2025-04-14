@@ -1,0 +1,9 @@
+{
+    "redirects": [
+      {
+        "source": "/api/*",
+        "destination": "https://dashboard.onrender.com/api/:splat",
+        "statusCode": 301
+      }
+    ]
+  }

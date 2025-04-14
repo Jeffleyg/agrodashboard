@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: weatherpro-frontend
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: API_BASE_URL
+        value: https://dashboard.onrender.com
