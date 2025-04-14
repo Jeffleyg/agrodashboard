@@ -1,5 +1,5 @@
 // Configurações
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = process.env.API_BASE_URL || 'https://dashboard.onrender.com';
 const UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutos
 
 // Elementos DOM
